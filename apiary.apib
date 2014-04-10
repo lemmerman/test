@@ -1,0 +1,984 @@
+FORMAT: 1A
+HOST: http://gamehistory.odobo.qa
+
+# Game History
+
+This API describes how Game History can be integrated at an Operator or Player level.<br>
+It is a secure service which may be called allowing access to historical game data for all games, both complete and incomplete.<br>
+For operators, Game History access may be integrated into the operator back office.<br>
+Operator access to the service will be based on a username and password specific to each operator.<br>
+The service  searching (for players only) and retrieval of game history data in both JSON and XML formats.<br>
+API should provide a facility to get a list of game logs, based on a combination of search criteria: Operator ID, Game Name, Player ID and Timeframe.<br>
+
+# Group Functionality
+How to use the API to view a part of its functionality:<br>
+Perform a request with the header **“Preferred:status=401”** (without the quotes) in order to get the response code and treated exception that you want.<br>
+For the purpose of the demo, in order to get a specific format (e.g. XML, JSON) specify the Accept **application/json** or **application/xml** in the request header.
+
+
+## List of Games an Operator [/gamerounds{?username,password,gameID,playerId,dateFrom,dateTo}]
+### Games List [GET]
+
++ Parameters
+    + username (required, string, `1`, `2`) ... Username `username` of the Operator for which the Game History log is requested
+    + password (required, string, `1`, `2`) ... Password `password` of the Operator for which the Game History log is requested
+    + gameID (number, optional, `95`) ... Game Instance ID `95` here. If not specified all the game rounds for all games, that the operator has licensed or the player has played, are returned.
+    + playerId (number, optional, `18`) ... Numeric id of the player's Id
+    + dateFrom (required, timestamp, `2013-07-15T15:24:45.806+01`) ... Timestamp filter of the game round creation in "yyyy-MM-dd'T'HH:mm:ss.SSSZ" format.
+    + dateTo (required, timestamp, `2013-07-15T16:24:45.806+01`) ... Timestamp filter of the game round ending in "yyyy-MM-dd'T'HH:mm:ss.SSSZ" format.
+    
++ Request 200
+
+    + Header
+    
+            Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+    
+    + Body
+    
+            {
+                "username": "[USERNAME]",
+                "password": "[PASSWORD]"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+              "GameHistoryListResponse": {
+                "gameRoundData": [
+                  {
+                    "transactionId": "2",
+                    "timeStamp": "2013-11-22T14:20:56.188+01:00",
+                    "playerId": "14",
+                    "gameName": "Pet’s Pay Day",
+                    "gameVersion": "99.99",
+                    "totalBet": "1.00",
+                    "totalWinnings": "0.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "3",
+                    "timeStamp": "2013-11-22T14:21:02.125+01:00",
+                    "playerId": "14",
+                    "gameName": "Pet’s Pay Day",
+                    "gameVersion": "99.99",
+                    "totalBet": "1.00",
+                    "totalWinnings": "0.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "4",
+                    "timeStamp": "2013-11-22T14:21:39.717+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "0.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "5",
+                    "timeStamp": "2013-11-22T14:21:47.517+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "68.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "6",
+                    "timeStamp": "2013-11-22T14:21:53.070+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "19.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "7",
+                    "timeStamp": "2013-11-22T14:21:58.685+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "0.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "8",
+                    "timeStamp": "2013-11-22T14:22:04.511+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "25.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "9",
+                    "timeStamp": "2013-11-22T14:22:10.137+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "6.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "10",
+                    "timeStamp": "2013-11-22T14:22:15.715+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "31.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "11",
+                    "timeStamp": "2013-11-22T14:22:21.303+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "0.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "12",
+                    "timeStamp": "2013-11-22T14:22:27.089+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "15.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "13",
+                    "timeStamp": "2013-11-22T14:22:32.796+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "6.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "14",
+                    "timeStamp": "2013-11-22T14:22:38.362+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "5.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "15",
+                    "timeStamp": "2013-11-22T14:22:43.927+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "8.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "16",
+                    "timeStamp": "2013-11-22T14:22:49.546+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "65.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "17",
+                    "timeStamp": "2013-11-22T14:22:55.164+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "3.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "18",
+                    "timeStamp": "2013-11-22T14:23:00.710+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "0.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "19",
+                    "timeStamp": "2013-11-22T14:23:06.521+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "15.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "20",
+                    "timeStamp": "2013-11-22T14:23:12.130+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "18.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "21",
+                    "timeStamp": "2013-11-22T14:23:17.777+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "0.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "22",
+                    "timeStamp": "2013-11-22T14:23:23.547+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "9.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "23",
+                    "timeStamp": "2013-11-22T14:23:29.110+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "14.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  },
+                  {
+                    "transactionId": "24",
+                    "timeStamp": "2013-11-22T14:23:34.744+01:00",
+                    "playerId": "14",
+                    "gameName": "Castle Builder",
+                    "gameVersion": "1.24",
+                    "totalBet": "15.00",
+                    "totalWinnings": "2.00",
+                    "gameCurrency": "GBP",
+                    "gameStatus": "1"
+                  }
+                ]
+              }
+            }
+            
++ Response 200 (application/xml)
+
+
+
+    + Body
+        
+            <GameHistoryListResponse><gameRoundData><transactionId>2</transactionId><timeStamp>2013-11-22T14:20:56.188+01:00</timeStamp><playerId>14</playerId><gameName>Pet’s Pay Day</gameName><gameVersion>99.99</gameVersion><totalBet>1.00</totalBet><totalWinnings>0.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>3</transactionId><timeStamp>2013-11-22T14:21:02.125+01:00</timeStamp><playerId>14</playerId><gameName>Pet’s Pay Day</gameName><gameVersion>99.99</gameVersion><totalBet>1.00</totalBet><totalWinnings>0.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>4</transactionId><timeStamp>2013-11-22T14:21:39.717+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>0.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>5</transactionId><timeStamp>2013-11-22T14:21:47.517+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>68.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>6</transactionId><timeStamp>2013-11-22T14:21:53.070+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>19.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>7</transactionId><timeStamp>2013-11-22T14:21:58.685+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>0.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>8</transactionId><timeStamp>2013-11-22T14:22:04.511+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>25.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>9</transactionId><timeStamp>2013-11-22T14:22:10.137+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>6.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>10</transactionId><timeStamp>2013-11-22T14:22:15.715+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>31.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>11</transactionId><timeStamp>2013-11-22T14:22:21.303+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>0.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>12</transactionId><timeStamp>2013-11-22T14:22:27.089+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>15.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>13</transactionId><timeStamp>2013-11-22T14:22:32.796+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>6.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>14</transactionId><timeStamp>2013-11-22T14:22:38.362+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>5.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>15</transactionId><timeStamp>2013-11-22T14:22:43.927+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>8.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>16</transactionId><timeStamp>2013-11-22T14:22:49.546+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>65.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>17</transactionId><timeStamp>2013-11-22T14:22:55.164+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>3.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>18</transactionId><timeStamp>2013-11-22T14:23:00.710+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>0.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>19</transactionId><timeStamp>2013-11-22T14:23:06.521+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>15.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>20</transactionId><timeStamp>2013-11-22T14:23:12.130+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>18.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>21</transactionId><timeStamp>2013-11-22T14:23:17.777+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>0.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>22</transactionId><timeStamp>2013-11-22T14:23:23.547+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>9.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>23</transactionId><timeStamp>2013-11-22T14:23:29.110+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>14.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData><gameRoundData><transactionId>24</transactionId><timeStamp>2013-11-22T14:23:34.744+01:00</timeStamp><playerId>14</playerId><gameName>Castle Builder</gameName><gameVersion>1.24</gameVersion><totalBet>15.00</totalBet><totalWinnings>2.00</totalWinnings><gameCurrency>GBP</gameCurrency><gameStatus>1</gameStatus></gameRoundData>
+            
++ Request Unauthorized
+
+    + Header
+    
+            Authorization: Basic wrongGRpbjpvcGVuIHNlc2FtZQ==
+            
+    + Body
+    
+            {
+                "username": "[BAD_USERNAME]",
+                "password": "[BAD_PASSWORD]"
+            }            
+
++ Response 401 (application/xml)
+
+    + Header
+    
+            Accept: application/xml
+            Date:Mon, 10 Feb 2014 13:57:44 GMT
+            server: grizzly/2.2.20
+            Transfer-Encoding: chunked
+            WWW-Authenticate: Basic realm= "Odobo Game History Server"
+    
+    + Body
+    
+            <errorResponse errorCode="INVALID_DATA">
+                <params/>
+            </errorResponse>
+            
++ Response 401 (application/json)
+
+    + Header
+            
+            Accept: application/json
+            Date:Mon, 10 Feb 2014 13:57:44 GMT
+            server: grizzly/2.2.20
+            Transfer-Encoding: chunked
+            WWW-Authenticate: Basic realm= "Odobo Game History Server"
+    
+    + Body
+    
+            {
+            "errorResponse": { "errorCode": "INVALID_DATA" }
+            }
+            
+# Group Game Round Events
+
+Each game archetype will have different game rounds events structure.<br>
+A transform function will be implemented for each particular game archetype which will return specific game round details.
+
+## Game events for that game round [/game-history/gamerounds/{gameRoundId}]
+### Game events for the game round [GET]
+Game round events of the gameRoundId
+
++ Parameters
+    + gameRoundId (required, number, `69910`) ... Numeric id for the game round
+    
++ Request 200
+
+    + Header
+    
+            Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+    
+    + Body
+    
+            {
+                "username": "[USERNAME]",
+                "password": "[PASSWORD]"
+            }
+
++ Response 200 (application/json)
+
+    + Header
+    
+            Accept: application/json
+            Date:Mon, 10 Feb 2014 13:57:44 GMT
+            server: grizzly/2.2.20
+            Transfer-Encoding: chunked
+            WWW-Authenticate: Basic realm= "Odobo Game History Server"
+    
+    + Body
+        
+            {
+            "gameRoundData": {
+            "transactionId": "1004:106580",
+            "timeStamp": 1393425316806,
+            "playerId": "78",
+            "gameName": "Castle Builder",
+            "gameVersion": "1.1",
+            "totalBet": "1500",
+            "totalWinnings": "387690",
+            "gameCurrency": "GBP",
+            "gameStatus": "0"
+            },
+            "detailsTable": {
+            "headers": [
+            "Total Bet (Bet*Lines Selected)",
+            "Result",
+            "Winnings Lines",
+            "Blocks Received",
+            "Build State",
+            "Normal Payoff",
+            "Bonus Jackpots",
+            "Bonus Activated",
+            "Bonus Payoff",
+            "Achievement",
+            "Achievement Payoff",
+            "Total Payoff"
+            ],
+            "body": [
+            {
+            "row": [
+            {
+            "value": " 15 * 1.00 GBP = 15.00 GBP",
+            "image": null,
+            "table": null
+            },
+            {
+            "value": null,
+            "image": null,
+            "table": {
+            "headers": [ ],
+            "body": [
+            {
+            "row": [
+            {
+            "value": null,
+            "image": "BONUS",
+            "table": null
+            },
+            {
+            "value": null,
+            "image": "SYMBOL_D",
+            "table": null
+            },
+            {
+            "value": null,
+            "image": "BONUS",
+            "table": null
+            }
+            ]
+            },
+            {
+            "row": [
+            {
+            "value": null,
+            "image": "BONUS",
+            "table": null
+            },
+            {
+            "value": null,
+            "image": "BONUS",
+            "table": null
+            },
+            {
+            "value": null,
+            "image": "SYMBOL_A",
+            "table": null
+            }
+            ]
+            },
+            {
+            "row": [
+            {
+            "value": null,
+            "image": "BONUS",
+            "table": null
+            },
+            {
+            "value": null,
+            "image": "BONUS",
+            "table": null
+            },
+            {
+            "value": null,
+            "image": "SYMBOL_C",
+            "table": null
+            }
+            ]
+            },
+            {
+            "row": [
+            {
+            "value": null,
+            "image": "BONUS",
+            "table": null
+            },
+            {
+            "value": null,
+            "image": "BONUS",
+            "table": null
+            },
+            {
+            "value": null,
+            "image": "SYMBOL_C",
+            "table": null
+            }
+            ]
+            },
+            {
+            "row": [
+            {
+            "value": null,
+            "image": "BONUS",
+            "table": null
+            },
+            {
+            "value": null,
+            "image": "BONUS",
+            "table": null
+            },
+            {
+            "value": null,
+            "image": "SYMBOL_C",
+            "table": null
+            }
+            ]
+            }
+            ]
+            }
+            },
+            {
+            "value": "2,4,5,6,10,11,12,13,14",
+            "image": null,
+            "table": null
+            },
+            {
+            "value": null,
+            "image": null,
+            "table": {
+            "headers": [ ],
+            "body": [
+            {
+            "row": [
+            {
+            "value": "RED: 1",
+            "image": null,
+            "table": null
+            }
+            ]
+            },
+            {
+            "row": [
+            {
+            "value": "BRONZE: 1",
+            "image": null,
+            "table": null
+            }
+            ]
+            },
+            {
+            "row": [
+            {
+            "value": "SILVER: 3",
+            "image": null,
+            "table": null
+            }
+            ]
+            },
+            {
+            "row": [
+            {
+            "value": "GOLD: 3",
+            "image": null,
+            "table": null
+            }
+            ]
+            }
+            ]
+            }
+            },
+            {
+            "value": "[8 / 10]",
+            "image": null,
+            "table": null
+            },
+            {
+            "value": "0.00 GBP",
+            "image": null,
+            "table": null
+            },
+            {
+            "value": null,
+            "image": null,
+            "table": {
+            "headers": [ ],
+            "body": [
+            {
+            "row": [
+            {
+            "value": "SMALL_WIN : 717.36 GBP",
+            "image": null,
+            "table": null
+            }
+            ]
+            },
+            {
+            "row": [
+            {
+            "value": "MEDIUM_WIN : 1494.50 GBP",
+            "image": null,
+            "table": null
+            }
+            ]
+            },
+            {
+            "row": [
+            {
+            "value": "BIG_WIN : 2092.30 GBP",
+            "image": null,
+            "table": null
+            }
+            ]
+            }
+            ]
+            }
+            },
+            {
+            "value": null,
+            "image": null,
+            "table": {
+            "headers": [ ],
+            "body": [
+            {
+            "row": [
+            {
+            "value": "Kingdom : 0",
+            "image": null,
+            "table": null
+            }
+            ]
+            },
+            {
+            "row": [
+            {
+            "value": "Castle : 70",
+            "image": null,
+            "table": null
+            }
+            ]
+            },
+            {
+            "row": [
+            {
+            "value": "Royal Wedding",
+            "image": null,
+            "table": null
+            }
+            ]
+            }
+            ]
+            }
+            },
+            {
+            "value": "3466.80 GBP",
+            "image": null,
+            "table": null
+            },
+            {
+            "value": "Achievement 14",
+            "image": null,
+            "table": null
+            },
+            {
+            "value": "410.10 GBP",
+            "image": null,
+            "table": null
+            },
+            {
+            "value": "3876.90 GBP",
+            "image": null,
+            "table": null
+            }
+            ]
+            }
+            ]
+            }
+            }
+    
++ Response 200 (application/xml)
+
+    + Header
+    
+            Accept: application/xml
+            Date:Mon, 10 Feb 2014 13:57:44 GMT
+            server: grizzly/2.2.20
+            Transfer-Encoding: chunked
+            WWW-Authenticate: Basic realm= "Odobo Game History Server"
+    
+    + Body
+    
+            <gameRoundData>
+                <transactionId>1004:106580</transactionId>
+                <timeStamp>1393425316806</timeStamp>
+                <playerId>78</playerId>
+                <gameName>Castle Builder</gameName>
+                <gameVersion>1.1</gameVersion>
+                <totalBet>1500</totalBet>
+                <totalWinnings>387690</totalWinnings>
+                <gameCurrency>GBP</gameCurrency>
+            <gameStatus>0</gameStatus>
+            </gameRoundData>
+            <detailsTable>
+                <headers>Total Bet (Bet*Lines Selected)</headers>
+                <headers>Result</headers>
+                <headers>Winnings Lines</headers>
+                <headers>Blocks Received</headers>
+                <headers>Build State</headers>
+                <headers>Normal Payoff</headers>
+                <headers>Bonus Jackpots</headers>
+                <headers>Bonus Activated</headers>
+                <headers>Bonus Payoff</headers>
+                <headers>Achievement</headers>
+                <headers>Achievement Payoff</headers>
+                <headers>Total Payoff</headers>
+                <body>
+                    <row>
+                        <value> 15 * 1.00 GBP = 15.00 GBP</value>
+                        <image />
+                        <table />
+                    </row>
+                    <row>
+                        <value />
+                        <image />
+                        <table>
+                            <body>
+                                <row>
+                                    <value />
+                                    <image>BONUS</image>
+                                    <table />
+                                </row>
+                                <row>
+                                    <value />
+                                    <image>SYMBOL_D</image>
+                                    <table />
+                                </row>
+                                <row>
+                                    <value />
+                                    <image>BONUS</image>
+                                    <table />
+                                </row>
+                            </body>
+                            <body>
+                                <row>
+                                    <value />
+                                    <image>BONUS</image>
+                                    <table />
+                                </row>
+                                <row>
+                                    <value />
+                                    <image>BONUS</image>
+                                    <table />
+                                </row>
+                                <row>
+                                    <value />
+                                    <image>SYMBOL_A</image>
+                                    <table />
+                                </row>
+                            </body>
+                            <body>
+                                <row>
+                                    <value />
+                                    <image>BONUS</image>
+                                    <table />
+                                </row>
+                                <row>
+                                    <value />
+                                    <image>BONUS</image>
+                                    <table />
+                                </row>
+                                <row>
+                                    <value />
+                                    <image>SYMBOL_C</image>
+                                    <table />
+                                </row>
+                            </body>
+                            <body>
+                                <row>
+                                    <value />
+                                    <image>BONUS</image>
+                                    <table />
+                                </row>
+                                <row>
+                                    <value />
+                                    <image>BONUS</image>
+                                    <table />
+                                </row>
+                                <row>
+                                    <value />
+                                    <image>SYMBOL_C</image>
+                                    <table />
+                                </row>
+                            </body>
+                            <body>
+                                <row>
+                                    <value />
+                                    <image>BONUS</image>
+                                    <table />
+                                </row>
+                                <row>
+                                    <value />
+                                    <image>BONUS</image>
+                                    <table />
+                                </row>
+                                <row>
+                                    <value />
+                                    <image>SYMBOL_C</image>
+                                    <table />
+                                </row>
+                            </body>
+                        </table>
+                    </row>
+                        <row>
+                            <value>2,4,5,6,10,11,12,13,14</value>
+                            <image />
+                            <table />
+                        </row>
+                        <row>
+                            <value />
+                            <image />
+                                <table>
+                                    <body>
+                                        <row>
+                                            <value>RED: 1</value>
+                                            <image />
+                                            <table />
+                                        </row>
+                                    </body>
+                                    <body>
+                                        <row>
+                                            <value>BRONZE: 1</value>
+                                            <image />
+                                            <table />
+                                        </row>
+                                    </body>
+                                    <body>
+                                        <row>
+                                            <value>SILVER: 3</value>
+                                            <image />
+                                            <table />
+                                        </row>
+                                    </body>
+                                    <body>
+                                        <row>
+                                            <value>GOLD: 3</value>
+                                            <image />
+                                            <table />
+                                        </row>
+                                    </body>
+                                </table>
+                            </row>
+                            <row>
+                                <value>[8 / 10]</value>
+                                <image />
+                                <table />
+                            </row>
+                            <row>
+                                <value>0.00 GBP</value>
+                                <image />
+                                <table />
+                            </row>
+                            <row>
+                                <value />
+                                <image />
+                                <table>
+                                    <body>
+                                        <row>
+                                            <value>SMALL_WIN : 717.36 GBP</value>
+                                            <image />
+                                            <table />
+                                        </row>
+                                    </body>
+                                    <body>
+                                        <row>
+                                            <value>MEDIUM_WIN : 1494.50 GBP</value>
+                                            <image />
+                                            <table />
+                                        </row>
+                                    </body>
+                                    <body>
+                                        <row>
+                                            <value>BIG_WIN : 2092.30 GBP</value>
+                                            <image />
+                                            <table />
+                                        </row>
+                                    </body>
+                                </table>
+                            </row>
+                            <row>
+                                <value />
+                                <image />
+                                <table>
+                            <body>
+                                <row>
+                                    <value>Kingdom : 0</value>
+                                    <image />
+                                    <table />
+                                </row>
+                            </body>
+                            <body>
+                                <row>
+                                    <value>Castle : 70</value>
+                                    <image />
+                                    <table />
+                                </row>
+                            </body>
+                            <body>
+                                <row>
+                                    <value>Royal Wedding</value>
+                                    <image />
+                                    <table />
+                                </row>
+                            </body>
+                        </table>
+                    </row>
+                    <row>
+                        <value>3466.80 GBP</value>
+                        <image />
+                        <table />
+                    </row>
+                    <row>
+                        <value>Achievement 14</value>
+                        <image />
+                        <table />
+                    </row>
+                    <row>
+                        <value>410.10 GBP</value>
+                        <image />
+                        <table />
+                    </row>
+                    <row>
+                        <value>3876.90 GBP</value>
+                        <image />
+                        <table />
+                    </row>
+                </body>
+            </detailsTable>
+
+
++ Response 404 (application/xml)
+
+    + Header
+    
+            Accept: application/xml
+            Date:Mon, 10 Feb 2014 13:57:44 GMT
+            server: grizzly/2.2.20
+            Transfer-Encoding: chunked
+            WWW-Authenticate: Basic realm= "Odobo Game History Server"
+    
+    + Body
+    
+            <errorResponse errorCode="NOT_FOUND">
+                <params/>
+            </errorResponse>
+            
++ Response 404 (application/json)
+
+    + Header
+            
+            Accept: application/json
+            Date:Mon, 10 Feb 2014 13:57:44 GMT
+            server: grizzly/2.2.20
+            Transfer-Encoding: chunked
+            WWW-Authenticate: Basic realm= "Odobo Game History Server"
+    
+    + Body
+    
+            {
+            "errorResponse": { "errorCode": "NOT_FOUND" }
+            }
