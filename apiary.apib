@@ -16,8 +16,8 @@ Perform a request with the header **“Preferred:status=401”** (without the qu
 For the purpose of the demo, in order to get a specific format (e.g. XML, JSON) specify the Accept **application/json** or **application/xml** in the request header.
 
 
-## List of Games an Operator [/gamerounds{?username,password,gameID,playerId,dateFrom,dateTo}]
-### Games List [GET]
+## List of Game Rounds of an Operator [/gamerounds{?username,password,gameID,playerId,dateFrom,dateTo}]
+### Game Rounds List [GET]
 
 + Parameters
     + username (required, string, `1`, `2`) ... Username `username` of the Operator for which the Game History log is requested
@@ -981,4 +981,168 @@ Game round events of the gameRoundId
     
             {
             "errorResponse": { "errorCode": "NOT_FOUND" }
+            }
+            
+## List of Games of an Operator [/operatorProductionGames?{username,password}]
+### Games List [GET]
+
++ Parameters
+    + username (required, string, `1`, `2`) ... Username `username` of the Operator for which the Game History log is requested
+    + password (required, string, `1`, `2`) ... Password `password` of the Operator for which the Game History log is requested
+    
++ Request 200
+
+    + Header
+    
+            Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+    
+    + Body
+    
+            {
+                "username": "[USERNAME]",
+                "password": "[PASSWORD]"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+              "OperatorProductionGames": {
+                "Games": [
+                  {
+                    "gameInstanceId": "95",
+                    "gameName": "Castle Builder High roller",
+                    "gameOverrideId": "14"
+                  },
+                  {
+                    "gameInstanceId": "95",
+                    "gameName": "castle legends",
+                    "gameOverrideId": "14"
+                  },
+                  {
+                    "gameInstanceId": "95",
+                    "gameName": "legend of black jack",
+                    "gameOverrideId": "14"
+                  },
+                  {
+                    "gameInstanceId": "95",
+                    "gameName": "pets weed day",
+                    "gameOverrideId": "14"
+                  },
+                  {
+                    "gameInstanceId": "95",
+                    "gameName": "santa's little helper",
+                    "gameOverrideId": "14"
+                  },
+                  {
+                    "gameInstanceId": "95",
+                    "gameName": "morbyd dick",
+                    "gameOverrideId": "14"
+                  },
+                  {
+                    "gameInstanceId": "95",
+                    "gameName": "astro",
+                    "gameOverrideId": null
+                  },
+                  {
+                    "gameInstanceId": "95",
+                    "gameName": "i",
+                    "gameOverrideId": "OverrideName"
+                  }
+                ]
+              }
+            }
+            
++ Response 200 (application/xml)
+
+
+
+    + Body
+        
+            <OperatorProductionGames>
+                <Game>
+                    <gameInstanceId>95</gameInstanceId>
+                    <gameName>Castle Builder High roller</gameName>
+                    <gameOverrideId>14</gameOverrideId>
+                </Game>
+                <Game>
+                    <gameInstanceId>95</gameInstanceId>
+                    <gameName>castle legends</gameName>
+                    <gameOverrideId>14</gameOverrideId>
+                </Game>
+                <Game>
+                    <gameInstanceId>95</gameInstanceId>
+                    <gameName>legend of black jack</gameName>
+                    <gameOverrideId>14</gameOverrideId>
+                </Game>
+                <Game>
+                    <gameInstanceId>95</gameInstanceId>
+                    <gameName>pets weed day</gameName>
+                    <gameOverrideId>14</gameOverrideId>
+                </Game>
+                <Game>
+                    <gameInstanceId>95</gameInstanceId>
+                    <gameName>santa's little helper</gameName>
+                    <gameOverrideId>14</gameOverrideId>
+                </Game>
+                <Game>
+                    <gameInstanceId>95</gameInstanceId>
+                    <gameName>morbyd dick</gameName>
+                    <gameOverrideId>14</gameOverrideId>
+                </Game>
+                <Game>
+                    <gameInstanceId>95</gameInstanceId>
+                    <gameName>astro</gameName>
+                    <gameOverrideId />
+                </Game>
+                <Game>
+                    <gameInstanceId>95</gameInstanceId>
+                    <gameName>i</gameName>
+                    <gameOverrideId>OverrideName</gameOverrideId>
+                </Game>
+            </OperatorProductionGames>
++ Request Unauthorized
+
+    + Header
+    
+            Authorization: Basic wrongGRpbjpvcGVuIHNlc2FtZQ==
+            
+    + Body
+    
+            {
+                "username": "[BAD_USERNAME]",
+                "password": "[BAD_PASSWORD]"
+            }            
+
++ Response 401 (application/xml)
+
+    + Header
+    
+            Accept: application/xml
+            Date:Mon, 10 Feb 2014 13:57:44 GMT
+            server: grizzly/2.2.20
+            Transfer-Encoding: chunked
+            WWW-Authenticate: Basic realm= "Odobo Game History Server"
+    
+    + Body
+    
+            <errorResponse errorCode="INVALID_DATA">
+                <params/>
+            </errorResponse>
+            
++ Response 401 (application/json)
+
+    + Header
+            
+            Accept: application/json
+            Date:Mon, 10 Feb 2014 13:57:44 GMT
+            server: grizzly/2.2.20
+            Transfer-Encoding: chunked
+            WWW-Authenticate: Basic realm= "Odobo Game History Server"
+    
+    + Body
+    
+            {
+            "errorResponse": { "errorCode": "INVALID_DATA" }
             }
